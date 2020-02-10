@@ -1,11 +1,3 @@
-/******************************************************************************
-
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 #include <stdio.h>
 #include "sindy1.h"
 #include "sindy2.h"
@@ -18,7 +10,7 @@ int input;
 int main()
 {
     do{
-        system("clear");
+        system("cls");
         printf("Pilih salah satu menu dibawah:\n");
         printf("1. Buat File teks\n");
         printf("2. Tambah data file\n");
@@ -29,37 +21,41 @@ int main()
     
         switch(input){
             case 1:
+                system("cls");
                 sindy1();
                 c = getchar();
                 getchar();
             break;
             case 2:
+                system("cls");
                 sindy2();
                 c = getchar();
                 getchar();
             break;
             case 3:
+                system("cls");
                 astri3();
                 c = getchar();
                 getchar();
             break;
             case 4:
+                system("cls");
                 astri4();
                 c = getchar();
                 getchar();
             break;
             case 5:
                 printf("Keluar");
-                c = getchar();
-                getchar();
             break;
             default:
                 printf("Input salah! Pilih nomor 1 - 5");
                 c = getchar();
                 getchar();
+            break;
         }
     }while(input != 5);
     
 
     return 0;
 }
+
