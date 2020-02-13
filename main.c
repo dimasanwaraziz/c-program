@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <dirent.h>
 #include "sindy1.h"
 #include "sindy2.h"
 #include "astri3.h"
@@ -9,7 +10,7 @@ int input;
 
 int main()
 {
-    do{
+	do{
         system("cls");
         printf("Pilih salah satu menu dibawah:\n");
         printf("1. Buat File teks\n");
