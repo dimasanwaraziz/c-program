@@ -21,14 +21,16 @@ void astri3(){
 	}
  
     printf("\nEnter the filename to be opened = ");fflush(stdin);gets(filename);
-    /*  open the file for reading */
     fptr = fopen(strcat(data, filename), "r");
-    if (fptr == NULL){
+    if (fptr == NULL)
+    {
         printf("Cannot open file \n");
     }
-    
-	char cacing[100];
-    fgets(cacing, 100, (FILE*)fptr);
-    printf("%s", cacing);
+    ch = fgetc(fptr);
+    while (ch != EOF)
+    {
+        printf ("%c", ch);
+        ch = fgetc(fptr);
+    }
     fclose(fptr);
 }

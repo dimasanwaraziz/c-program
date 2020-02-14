@@ -16,13 +16,17 @@ void sindy1(){
 		closedir(d);
 	}
     
-    printf("\nMasukkan nama file yang akan dibuat = ");fflush(stdin);gets(filename);
-	FILE *sindy;
-    sindy = fopen(strcat(data, filename), "w");
-    if(sindy != NULL){
-        printf("File \"%s\" berhasil dibuat \n", filename);
-    }else{
-    	printf("File gagal dibuat \n");
+    printf("\nMasukkan nama file yang akan dibuat = [0 untuk batal] ");fflush(stdin);gets(filename);
+    if(strcmp("0", filename) == 0){
+    	printf("\nbatal menambah file...");
+	}else{
+		FILE *sindy;
+	    sindy = fopen(strcat(data, filename), "w");
+	    if(sindy != NULL){
+	        printf("File \"%s\" berhasil dibuat \n", filename);
+	    }else{
+	    	printf("File gagal dibuat \n");
+		}
+	    fclose(sindy);
 	}
-    fclose(sindy);
 }
