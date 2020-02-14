@@ -20,17 +20,25 @@ void astri3(){
 		closedir(d);
 	}
  
-    printf("\nEnter the filename to be opened = ");fflush(stdin);gets(filename);
-    fptr = fopen(strcat(data, filename), "r");
-    if (fptr == NULL)
-    {
-        printf("Cannot open file \n");
-    }
-    ch = fgetc(fptr);
-    while (ch != EOF)
-    {
-        printf ("%c", ch);
-        ch = fgetc(fptr);
-    }
-    fclose(fptr);
+    printf("\nEnter the filename to be opened = [0 untuk batal] ");fflush(stdin);gets(filename);
+    if(strcmp("0", filename) == 0 || strcmp("", filename) == 0){
+    	printf("batal membuka file");
+	}else{
+	    fptr = fopen(strcat(data, filename), "r");
+	    if (fptr == NULL)
+	    {
+	        printf("Gagal membuka file / file tidak ada\n");
+	    }else{
+		    ch = fgetc(fptr);
+		    printf("\n Isi yang ada di dalam file:");
+		    printf("\n==========\n");
+		    while (ch != EOF)
+		    {
+		        printf ("%c", ch);
+		        ch = fgetc(fptr);
+		    }
+		    printf("==========");
+		    fclose(fptr);
+		}
+	}
 }
