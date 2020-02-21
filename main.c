@@ -13,10 +13,10 @@ int main()
 	do{
         system("cls");
         printf("Pilih salah satu menu dibawah:\n");
-        printf("1. Buat File teks\n");
-        printf("2. Tambah data file\n");
-        printf("3. Tampilkan data file\n");
-        printf("4. Hapus file teks\n");
+        printf("1. Buat arsip beruntun\n");
+        printf("2. Tampilkan arsip beruntun\n");
+        printf("3. Hitung total produk\n");
+        printf("4. Hitung rata-rata total produk\n");
         printf("5. exit\n\n");
         printf("Pilih menu = ");scanf("%d", &input);
     

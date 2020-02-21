@@ -2,31 +2,30 @@ void sindy1(){
     printf("Menu 1\n\n");
     
     // Bikin programnya dibawah oke
-    char data[15]="data/";
-    char filename[15];
+    struct barang{
+		char kode[100];
+	    char nama[100];
+	    float harga;
+	};
+
+	struct barang data;
+	char inputlagi;
+    FILE *file;
     
-    printf("  File yang sudah ada:\n");
-    DIR *d;
-    struct dirent *dir;
-    d = opendir("data/");
-    if(d){
-    	while((dir = readdir(d)) != NULL){
-			printf("  %s\n", dir->d_name);
+    file = fopen("data/database.txt", "w");
+    while(inputlagi != 'n'){
+		printf("\nMasukkan data berikut\n");
+		printf("Kode  : ");fflush(stdin);gets(data.kode);
+		printf("Nama  : ");fflush(stdin);gets(data.nama);
+		printf("Harga : ");
+		while(scanf("%f", &data.harga) == 0){
+			printf("Harga harus angka!\nHarga : ");
+			scanf("%*s");
 		}
-		closedir(d);
+		
+		fprintf(file, "%s#%s#%2.f\n", data.kode, data.nama, data.harga);
+		printf("\nKode  : %s\nNama  : %s\nHarga : %2.f", data.kode, data.nama, data.harga);
+		printf("\ninput lagi? [y/n] ");scanf("%s", &inputlagi);
 	}
-    
-    printf("\nMasukkan nama file yang akan dibuat = [0 untuk batal] ");fflush(stdin);gets(filename);
-    if(strcmp("0", filename) == 0){
-    	printf("\nbatal menambah file...");
-	}else{
-		FILE *sindy;
-	    sindy = fopen(strcat(data, filename), "w");
-	    if(sindy != NULL){
-	        printf("File \"%s\" berhasil dibuat \n", filename);
-	    }else{
-	    	printf("File gagal dibuat \n");
-		}
-	    fclose(sindy);
-	}
+	fclose(file);
 }
