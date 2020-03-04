@@ -19,7 +19,7 @@ int main()
         printf("4. Hitung rata-rata total produk\n");
         printf("5. exit\n\n");
         printf("Pilih menu = ");scanf("%d", &input);
-    
+
         switch(input){
             case 1:
                 system("cls");
