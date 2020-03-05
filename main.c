@@ -1,60 +1,66 @@
 #include <stdio.h>
-#include <dirent.h>
-#include "sindy1.h"
-#include "sindy2.h"
-#include "astri3.h"
-#include "astri4.h"
+#include "header.h"
 
-char c;
-int input;
 
-int main()
-{
+int main(){
+	char c;
+	int input;
+
+	int arr[] = { 12, 11, 13, 5, 6 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    
 	do{
         system("cls");
         printf("Pilih salah satu menu dibawah:\n");
-        printf("1. Buat arsip beruntun\n");
-        printf("2. Tampilkan arsip beruntun\n");
-        printf("3. Hitung total produk\n");
-        printf("4. Hitung rata-rata total produk\n");
-        printf("5. exit\n\n");
+        printf("1. Insertion\n");
+        printf("2. Selection\n");
+        printf("3. Bubble\n");
+        printf("4. Quick Sort\n");
+        printf("5. Merge Sort\n");
+        printf("6. exit\n\n");
         printf("Pilih menu = ");scanf("%d", &input);
 
         switch(input){
             case 1:
                 system("cls");
-                sindy1();
+                insertion(arr, n);
                 c = getchar();
                 getchar();
             break;
             case 2:
                 system("cls");
-                sindy2();
+                selection(arr, n);
                 c = getchar();
                 getchar();
             break;
             case 3:
                 system("cls");
-                astri3();
+                bubble();
                 c = getchar();
                 getchar();
             break;
             case 4:
                 system("cls");
-                astri4();
+                quickSort();
                 c = getchar();
                 getchar();
             break;
             case 5:
+                system("cls");
+                mergeSort();
+                c = getchar();
+                getchar();
+            break;
+            case 6:
                 printf("Keluar");
             break;
             default:
-                printf("Input salah! Pilih nomor 1 - 5");
+                printf("Input salah! Pilih nomor 1 - 6");
                 c = getchar();
                 getchar();
             break;
         }
-    }while(input != 5);
+    }while(input != 6);
     
 
     return 0;
