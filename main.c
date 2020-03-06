@@ -1,5 +1,7 @@
 #include <stdio.h>
-#include "header.h"
+#include <dirent.h>
+#include "sorting.h"
+#include "sercing.h"
 
 
 int main(){
@@ -13,10 +15,10 @@ int main(){
         system("cls");
         printf("Pilih salah satu menu dibawah:\n");
         printf("1. Insertion\n");
-        printf("2. Selection\n");
-        printf("3. Bubble\n");
-        printf("4. Quick Sort\n");
-        printf("5. Merge Sort\n");
+        printf("2. Bubble\n");
+        printf("3. Min/Max\n");
+        printf("4. Sequential\n");
+        printf("5. Binary Search\n");
         printf("6. exit\n\n");
         printf("Pilih menu = ");scanf("%d", &input);
 
@@ -29,25 +31,25 @@ int main(){
             break;
             case 2:
                 system("cls");
-                selection(arr, n);
+                bubble(arr, n);
                 c = getchar();
                 getchar();
             break;
             case 3:
                 system("cls");
-                bubble();
+                minmax(arr, n);
                 c = getchar();
                 getchar();
             break;
             case 4:
                 system("cls");
-                quickSort();
+                sequential();
                 c = getchar();
                 getchar();
             break;
             case 5:
                 system("cls");
-                mergeSort();
+                binary(arr, n);
                 c = getchar();
                 getchar();
             break;
@@ -62,7 +64,6 @@ int main(){
         }
     }while(input != 6);
     
-
     return 0;
 }
 
