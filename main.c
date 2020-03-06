@@ -43,7 +43,7 @@ int main(){
             break;
             case 4:
                 system("cls");
-                sequential();
+                sequential(arr, n);
                 c = getchar();
                 getchar();
             break;
