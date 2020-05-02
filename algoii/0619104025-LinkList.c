@@ -48,20 +48,11 @@ void addFirst(int nim, char nama[], float ipk, struct Elemen *L){
 	if(L == NULL){
 		L = B;
 		L->next = NULL;
-		//printf("%d\n", L->mhs.nim);
-		//printf("%s\n", L->mhs.nama);
-		//printf("%.2f\n", L->mhs.ipk);
-		//printf("yes, is null");
 		M.first = L;
 		count++;
-		//printf("%d\n", count);
 	}else{
 		B->next = L;
 		L = B;
-		//printf("%d", B->mhs.nim);
-		//printf("%s", B->mhs.nama);
-		//printf("%.2f", B->mhs.ipk);
-		//printf("masuk ke else");
 		M.first = L;
 		count++;
 	}
@@ -90,6 +81,7 @@ void addAfter(struct Elemen *prev, int nim, char nama[], float ipk, struct Eleme
 			}
 			L = L->next;
 		}
+		count++;
 	}
 }
 void addLast(int nim, char nama[], float ipk, struct Elemen *L){
@@ -115,9 +107,46 @@ void addLast(int nim, char nama[], float ipk, struct Elemen *L){
 }
 
 // Bagian untuk delete
-void deleteFirst(struct List *L);
-void deleteAfter(struct Elemen *prev, struct List *L);
-void deleteLast(struct List *);
+void deleteFirst(struct Elemen *L){
+	M.first = L->next;
+	free(L);
+	count--;
+}
+void deleteLast(struct Elemen *prev, struct Elemen *L){
+	while(L->next != NULL){
+		L = L->next;
+	}
+	while(prev->next != L){
+		prev = prev->next;
+	}
+	prev->next = NULL;
+	free(L);
+	count--;
+}
+void deleteAfter(int nim, struct Elemen *prev, struct Elemen *L){
+	char c;
+	
+	if(L->next == NULL){
+		if(L->mhs.nim != nim){
+			printf("Tidak ada data dengan NIM tersebut");
+			c = getchar();
+			getchar();
+		}else{
+			L = NULL;
+			M.first = L;
+			free(L);
+		}
+	}else{
+		while(L->next->mhs.nim != nim){
+			L = L->next;
+		}
+	
+		prev = L->next;
+		L->next = prev->next;
+		free(prev);
+		count--;
+	}
+}
 
 int main(){
 	int input;
@@ -125,8 +154,8 @@ int main(){
 	int nim;
 	char nama[30];
 	float ipk;
-	//struct Elemen *e = (struct Elemen *)malloc(sizeof(struct Elemen));
 	L.first = NULL;
+	M.first = NULL;
 	
 	do{
 		system("clear");
@@ -141,37 +170,59 @@ int main(){
 		printf("8. exit\n");
 		printf("Masukkan menu = ");scanf("%d", &input);
 		
-		if(input == 1 || input == 3 || input == 2){
-			printf("[1/3] Masukkan NIM = ");scanf("%d", &nim);
-			printf("[2/3] Masukkan Nama = ");scanf("%s", nama);
-			printf("[3/3] Masukkan IPK = ");scanf("%f", &ipk);
+		if(input == 1 || input == 3 || input == 2 || input == 5){
+			if(input == 5){
+				if(M.first != NULL){
+					printf("[1/1] Masukkan NIM yang akan dihapus = ");scanf("%d", &nim);
+				}
+			}else{
+				printf("[1/3] Masukkan NIM = ");scanf("%d", &nim);
+				printf("[2/3] Masukkan Nama = ");scanf("%s", nama);
+				printf("[3/3] Masukkan IPK = ");scanf("%f", &ipk);
+			}
 		}
 		
 		
 		switch(input){
 			case 1: 
-				if(count == 0)
-					addFirst(nim, nama, ipk, L.first); 
-				else
+				//if(count == 0)
+				//	addFirst(nim, nama, ipk, L.first); 
+				//else
 					addFirst(nim, nama, ipk, M.first); 
 				break;
 			case 2:
-				if(count == 0)
-					addAfter(L.first, nim, nama, ipk, L.first); 
-				else
+				//if(count == 0)
+				//	addAfter(L.first, nim, nama, ipk, L.first); 
+				//else
 					addAfter(L.first, nim, nama, ipk, M.first); 
 				break;
 			case 3: 	
-				if(count == 0)
-					addLast(nim, nama, ipk, L.first); 
-				else
+				//if(count == 0)
+				//	addLast(nim, nama, ipk, L.first); 
+				//else
 					addLast(nim, nama, ipk, M.first); 
 				break;
-			case 4: break;
-			case 5: break;
-			case 6: break;
+			case 4: 
+				if (M.first == NULL){
+					printf("Tidak ada data");
+					enterForContinue = getchar();
+					getchar();
+				}else deleteFirst(M.first); break;
+			case 5: 
+				if(M.first == NULL){
+					printf("Tidak ada data");
+					enterForContinue = getchar();
+					getchar();
+				}else deleteAfter(nim, M.first, M.first); break;
+			case 6: 
+				if(M.first == NULL){
+					printf("Tidak ada data");
+					enterForContinue = getchar();
+					getchar();
+				}else deleteLast(M.first, M.first); break;
 			case 7: printAllElement(M.first); enterForContinue = getchar(); getchar(); break;
 			case 8: printf("exit"); break;
+			default: printf("Masukkan angka yang benar");enterForContinue = getchar(); getchar(); break;
 		}
 	}while(input != 8);
 }	
