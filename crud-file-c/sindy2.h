@@ -22,7 +22,7 @@ void sindy2(){
 		closedir(d);
 	}
     
-    printf("\nMasukkan nama file yang akan di masukkan data = [0 untuk batal] ");fflush(stdin);gets(filename);
+    printf("\nMasukkan nama file yang akan di masukkan data = [0 untuk batal] ");fflush(stdin);fgets(filename, 100, stdin);
     if(strcmp("0", filename) == 0 || strcmp("", filename) == 0){
     	printf("\nbatal menambah file...");
 	}else{

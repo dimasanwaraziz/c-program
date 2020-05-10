@@ -16,6 +16,7 @@ void sindy1(){
 		closedir(d);
 	}
     
+    // printf("\nMasukkan nama file yang akan dibuat = [0 untuk batal] ");fflush(stdin);fgets(filename, 100, stdin);
     printf("\nMasukkan nama file yang akan dibuat = [0 untuk batal] ");fflush(stdin);gets(filename);
     if(strcmp("0", filename) == 0){
     	printf("\nbatal menambah file...");

@@ -70,18 +70,24 @@ void addAfter(struct Elemen *prev, int nim, char nama[], float ipk, struct Eleme
 		M.first = L;
 		count++;
 	}else{
-		while(B->mhs.nim > L->mhs.nim){
-			if(L->next == NULL){
-				L->next = B;
-				B->next = NULL;
-			}else if(B->mhs.nim > L->mhs.nim && B->mhs.nim <= L->next->mhs.nim){
-				prev = L->next;
-				L->next = B;
-				B->next = prev;
+		if(B->mhs.nim < L->mhs.nim){
+			//if(L->next == NULL){
+				addFirst(nim, nama, ipk, L);
+			//}
+		}else{
+			while(B->mhs.nim > L->mhs.nim){
+ 				if(L->next == NULL){
+					L->next = B;
+					B->next = NULL;
+				}else if(B->mhs.nim > L->mhs.nim && B->mhs.nim <= L->next->mhs.nim){
+					prev = L->next;
+					L->next = B;
+					B->next = prev;
+				}
+				L = L->next;
 			}
-			L = L->next;
+			count++;
 		}
-		count++;
 	}
 }
 void addLast(int nim, char nama[], float ipk, struct Elemen *L){
@@ -113,15 +119,22 @@ void deleteFirst(struct Elemen *L){
 	count--;
 }
 void deleteLast(struct Elemen *prev, struct Elemen *L){
-	while(L->next != NULL){
-		L = L->next;
+	if(L->next == NULL){
+		L = NULL;
+		M.first = L;
+		free(L);
+		count--;
+	}else{
+		while(L->next != NULL){
+			L = L->next;
+		}
+		while(prev->next != L){
+			prev = prev->next;
+		}
+		prev->next = NULL;
+		free(L);
+		count--;
 	}
-	while(prev->next != L){
-		prev = prev->next;
-	}
-	prev->next = NULL;
-	free(L);
-	count--;
 }
 void deleteAfter(int nim, struct Elemen *prev, struct Elemen *L){
 	char c;
@@ -135,6 +148,7 @@ void deleteAfter(int nim, struct Elemen *prev, struct Elemen *L){
 			L = NULL;
 			M.first = L;
 			free(L);
+			count--;
 		}
 	}else{
 		while(L->next->mhs.nim != nim){
